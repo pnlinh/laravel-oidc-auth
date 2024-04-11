@@ -11,6 +11,7 @@ class OIDCService
     protected const STATE_SESSION_KEY = 'oidc-auth.state';
 
     protected $signer;
+
     protected $provider;
 
     public function __construct(Sha256 $signer)
@@ -19,9 +20,9 @@ class OIDCService
         $this->provider = new OpenIDConnectProvider(
             array_merge(
                 config('oidc-auth.provider'),
-                [ 'redirectUri' => route('oidc-auth.callback') ]
+                ['redirectUri' => route('oidc.callback')]
             ),
-            [ 'signer' => $this->signer ]
+            ['signer' => $this->signer]
         );
     }
 
@@ -39,6 +40,7 @@ class OIDCService
     {
         $url = $this->provider->getAuthorizationUrl();
         session()->flash(self::STATE_SESSION_KEY, $this->provider->getState());
+
         return $url;
     }
 

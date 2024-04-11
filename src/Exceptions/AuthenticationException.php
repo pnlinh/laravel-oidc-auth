@@ -1,6 +1,6 @@
 <?php
 
-namespace LaravelOIDCAuth;
+namespace LaravelOIDCAuth\Exceptions;
 
 use Symfony\Component\HttpKernel\Exception\HttpException;
 

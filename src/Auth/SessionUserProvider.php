@@ -1,9 +1,12 @@
 <?php
 
-namespace LaravelOIDCAuth;
+namespace LaravelOIDCAuth\Auth;
 
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Contracts\Auth\UserProvider;
+use LaravelOIDCAuth\OIDCService;
+use LaravelOIDCAuth\OIDCUser;
+use LogicException;
 
 class SessionUserProvider implements UserProvider
 {
@@ -22,30 +25,32 @@ class SessionUserProvider implements UserProvider
                 return $user;
             }
         }
+
+        return null;
     }
 
     public function retrieveByToken($identifier, $token)
     {
-        throw new \LogicException('Not implemented');
+        throw new LogicException('Not implemented');
     }
 
     public function updateRememberToken(Authenticatable $user, $token)
     {
-        throw new \LogicException('Not implemented');
+        throw new LogicException('Not implemented');
     }
 
     public function retrieveByCredentials(array $credentials)
     {
-        throw new \LogicException('Not applicable for OIDC auth.');
+        throw new LogicException('Not applicable for OIDC auth.');
     }
 
     public function validateCredentials(Authenticatable $user, array $credentials)
     {
-        throw new \LogicException('Not applicable for OIDC auth.');
+        throw new LogicException('Not applicable for OIDC auth.');
     }
 
     public function rehashPasswordIfRequired(Authenticatable $user, array $credentials, bool $force = false)
     {
-        throw new \LogicException('Not applicable for OIDC auth.');
+        throw new LogicException('Not applicable for OIDC auth.');
     }
 }

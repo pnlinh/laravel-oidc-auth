@@ -1,10 +1,14 @@
 <?php
 
-namespace LaravelOIDCAuth;
+namespace LaravelOIDCAuth\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
+use LaravelOIDCAuth\Exceptions\AuthenticationErrorException;
+use LaravelOIDCAuth\Exceptions\AuthenticationException;
+use LaravelOIDCAuth\Exceptions\InvalidStateException;
+use LaravelOIDCAuth\OIDCService;
 
 class CallbackController extends Controller
 {
@@ -68,8 +72,6 @@ class CallbackController extends Controller
 
         Auth::login($factory->authenticatable($token));
 
-        return redirect()->intended(
-            config('oidc-auth.default_redirect_after_auth') ?? '/'
-        );
+        return redirect()->intended(config('oidc-auth.redirect_path_after_login'));
     }
 }

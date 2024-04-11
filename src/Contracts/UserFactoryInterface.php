@@ -1,14 +1,13 @@
 <?php
 
-namespace LaravelOIDCAuth;
+namespace LaravelOIDCAuth\Contracts;
 
 use OpenIDConnectClient\AccessToken;
 
 interface UserFactoryInterface
 {
     /**
-     * Get a Illuminate\Contracts\Auth\Authenticatable from access token.
-     *
+     * Get Illuminate\Contracts\Auth\Authenticatable from access token.
      */
     public function authenticatable(AccessToken $token);
 }

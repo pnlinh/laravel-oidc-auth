@@ -2,6 +2,7 @@
 
 namespace LaravelOIDCAuth;
 
+use LaravelOIDCAuth\Contracts\UserFactoryInterface;
 use OpenIDConnectClient\AccessToken;
 
 class UserFactory implements UserFactoryInterface
