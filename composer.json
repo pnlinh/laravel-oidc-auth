@@ -1,5 +1,5 @@
 {
-    "name": "xdavidwu/laravel-oidc-auth",
+    "name": "pnlinh/laravel-oidc-auth",
     "description": "OpenID Connect authentication for Laravel",
     "type": "library",
     "license": "MIT",
@@ -10,8 +10,8 @@
     },
     "authors": [
         {
-            "name": "xdavidwu",
-            "email": "xdavidwuph@gmail.com"
+            "name": "pnlinh",
+            "email": "pnlinh1207@gmail.com"
         }
     ],
     "require": {
