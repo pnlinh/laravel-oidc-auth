@@ -3,6 +3,7 @@
 namespace LaravelOIDCAuth;
 
 use Illuminate\Contracts\Auth\Authenticatable;
+use LogicException;
 
 class OIDCUser implements Authenticatable
 {
@@ -30,12 +31,12 @@ class OIDCUser implements Authenticatable
 
     public function getAuthPassword()
     {
-        throw new \LogicException('Not applicable for OIDC auth.');
+        throw new LogicException('Not applicable for OIDC auth.');
     }
 
     public function getAuthPasswordName()
     {
-        throw new \LogicException('Not applicable for OIDC auth.');
+        throw new LogicException('Not applicable for OIDC auth.');
     }
 
     public function getRememberToken()
@@ -45,11 +46,11 @@ class OIDCUser implements Authenticatable
 
     public function setRememberToken($value)
     {
-        throw new \LogicException('Not implemented.');
+        throw new LogicException('Not implemented.');
     }
 
     public function getRememberTokenName()
     {
-        throw new \LogicException('Not implemented.');
+        throw new LogicException('Not implemented.');
     }
 }

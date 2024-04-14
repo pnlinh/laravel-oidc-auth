@@ -1,9 +1,11 @@
 <?php
 
-namespace LaravelOIDCAuth;
+namespace LaravelOIDCAuth\Http\Middleware;
 
-use Illuminate\Contracts\Auth\Factory as Auth;
 use Illuminate\Auth\Middleware\Authenticate as Middleware;
+use Illuminate\Contracts\Auth\Factory as Auth;
+use Illuminate\Http\Request;
+use LaravelOIDCAuth\OIDCService;
 
 class Authenticate extends Middleware
 {
@@ -15,9 +17,9 @@ class Authenticate extends Middleware
         parent::__construct($auth);
     }
 
-    protected function redirectTo($request)
+    protected function redirectTo(Request $request)
     {
-        if (!$request->expectsJson()) {
+        if (! $request->expectsJson()) {
             return $this->oidcService->buildAuthorizationUrl();
         }
     }

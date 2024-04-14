@@ -15,8 +15,11 @@
         }
     ],
     "require": {
-        "steverhoades/oauth2-openid-connect-client": "^2.0",
-        "laravel/framework": "^6.0|^7.0|^8.0|^9.0|^10.0|^11.0"
+        "php": "^7.1.3|^7.3|^8.0",
+        "steverhoades/oauth2-openid-connect-client": "^2.0"
+    },
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "^3.53"
     },
     "extra": {
         "laravel": {
@@ -24,5 +27,10 @@
                 "LaravelOIDCAuth\\OIDCAuthServiceProvider"
             ]
         }
+    },
+    "scripts": {
+        "cs": [
+            "vendor/bin/php-cs-fixer fix"
+        ]
     }
 }

@@ -15,14 +15,14 @@ return [
     |
      */
     'provider' => [
-        'clientId' => 'example',
-        'clientSecret' => 'example',
-        'idTokenIssuer' => 'example.com',
-        'urlAuthorize' => 'http://example.com/authorize',
-        'urlAccessToken' => 'http://example.com/token',
-        'urlResourceOwnerDetails' => 'http://example.com/owner',
-        'scopes' => ['openid'],
-        'publicKey' => 'file:///key.pem',
+        'clientId' => env('OIDC_CLIENT_ID'),
+        'clientSecret' => env('OIDC_CLIENT_SECRET'),
+        'idTokenIssuer' => env('OIDC_TOKEN_ISSUER'),
+        'urlAuthorize' => env('OIDC_AUTHORIZE_URL'),
+        'urlAccessToken' => env('OIDC_ACCESS_TOKEN_URL'),
+        'urlResourceOwnerDetails' => env('OIDC_RESOURCE_OWNER_DETAILS_URL'),
+        'scopes' => array_filter(explode(',', env('OIDC_SCOPES', 'openid,email,profile'))),
+        'publicKey' => 'file:///'.base_path(env('OIDC_CERT_FILE')),
     ],
 
     /*
@@ -30,21 +30,21 @@ return [
     | Callback Route
     |--------------------------------------------------------------------------
     |
-    | Callback route used by Authrization Code flow.
+    | Callback route used by Authorization Code flow.
     |
      */
-    'callback_route' => '/oidc/callback',
+    'callback_route' => env('CALLBACK_ROUTE', '/oidc/callback'),
 
     /*
     |--------------------------------------------------------------------------
     | Authenticatable Factory
     |--------------------------------------------------------------------------
     |
-    | Factory to get a Illuminate\Contracts\Auth\Authenticatable to use, see
+    | Factory to get Illuminate\Contracts\Auth\Authenticatable to use, see
     | LaravelOIDCAuth\UserFactoryInterface.
-    | For example, you can use a Eloquent model as Authenticatable to store
+    | For example, you can use Eloquent model as Authenticatable to store
     | user information in DB.
-    | A OpenIDConnectClient\AccessToken will be passed to authenticable()
+    | A OpenIDConnectClient\AccessToken will be passed to authenticatable()
     |
      */
     'authenticatable_factory' => \LaravelOIDCAuth\UserFactory::class,
@@ -81,10 +81,15 @@ return [
     | OIDC Authorization Endpoint, and user manually visit that login page.
     |
     | DEPRECATED: Just link to an auth-protected page on the intermediate page
-    | instead of building OIDC Authrization Endpoint URL, and let the auth
+    | instead of building OIDC Authorization Endpoint URL, and let the auth
     | middleware do the work for you as usual. Adds an extra round-trip but
     | simplifies consumer code.
     |
      */
-    'default_redirect_after_auth' => '/',
+    'redirect_path_after_login' => env('OIDC_REDIRECT_PATH_AFTER_LOGIN', '/'),
+
+    /**
+     * Redirect url after logout in application.
+     */
+    'redirect_url_after_logout' => env('OIDC_REDIRECT_URL_AFTER_LOGOUT'),
 ];
